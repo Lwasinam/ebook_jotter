@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:ebook_jotter/import/imports.dart';
 import 'package:ebook_jotter/main.dart';
 import 'package:ebook_jotter/models/Model.dart';
@@ -8,6 +10,7 @@ class DataProvider extends ChangeNotifier {
 
   static Box<pdfModels>  openHiveBox() => Hive.box("BooksDatabase");
 
+  //dialog to write book name
   Future BookNameDialog(file, coverImageString, context) => showDialog(
     context: context,
     builder: (context) => AlertDialog(
@@ -25,7 +28,7 @@ class DataProvider extends ChangeNotifier {
         TextButton(onPressed: ()  {
           Navigator.of(context).pop();
        
-              addToHive(pdfModels(filepath:file ,imagePath: coverImageString ,pageNumber: 1, notePath: '', bookName:textController?.text ));
+              addToHive(pdfModels(filepath:file ,imageFile: coverImageString ,pageNumber: 1, notePath: '', bookName:textController?.text ));
         }, child: Text("Ok"))
       ],
     )
@@ -33,6 +36,7 @@ class DataProvider extends ChangeNotifier {
 
   );
 
+  //adds instance of class to hive database
   addToHive(pdfModels pdfModel) async {
     Box  box = DataProvider.openHiveBox();// adds to database
     box.add(pdfModel);
@@ -42,7 +46,7 @@ class DataProvider extends ChangeNotifier {
 
   pickBook(context) async {
     
-     // openHiveBox();
+   
 
      FilePickerResult? result = await FilePicker.platform.pickFiles();
 
@@ -57,7 +61,7 @@ class DataProvider extends ChangeNotifier {
           await page.close();
          
          // convert image file in bytes to string
-        String? coverImageString = coverImage?.bytes.toString();
+        Uint8List? coverImageString = coverImage?.bytes;
 
         BookNameDialog(file,coverImageString, context );
        
