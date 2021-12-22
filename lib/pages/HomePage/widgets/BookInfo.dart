@@ -14,7 +14,7 @@ class BookInfo extends StatelessWidget {
       margin: const EdgeInsets.only(left: 20,right: 20),
       width: ScreenUtil().screenWidth,
       height: ScreenUtil(). setHeight(250),
-      child: ValueListenableBuilder <Box<pdfModel>>(
+      child: ValueListenableBuilder <Box<pdfModels>>(
         valueListenable: DataProvider.openHiveBox().listenable(),
         builder: (context, data, child) {
           return ListView.builder(
@@ -23,7 +23,7 @@ class BookInfo extends StatelessWidget {
             itemCount: data.length,
             itemBuilder: (BuildContext context, int index) {
            
-             pdfModel? pdfmodel = data.getAt(index);
+             pdfModels? pdfmodel = data.getAt(index);
               return Container(
                 padding: EdgeInsets.only(bottom: 50),
               

@@ -6,7 +6,7 @@ import 'package:native_pdf_renderer/native_pdf_renderer.dart';
 class DataProvider extends ChangeNotifier {
   final TextEditingController? textController = new TextEditingController();
 
-  static Box<pdfModel>  openHiveBox() => Hive.box("BooksData");
+  static Box<pdfModels>  openHiveBox() => Hive.box("BooksDatabase");
 
   Future BookNameDialog(file, coverImageString, context) => showDialog(
     context: context,
@@ -25,7 +25,7 @@ class DataProvider extends ChangeNotifier {
         TextButton(onPressed: ()  {
           Navigator.of(context).pop();
        
-              addToHive(pdfModel(filepath:file ,imagePath: coverImageString ,pageNumber: 1, notePath: '', bookName:textController?.text ));
+              addToHive(pdfModels(filepath:file ,imagePath: coverImageString ,pageNumber: 1, notePath: '', bookName:textController?.text ));
         }, child: Text("Ok"))
       ],
     )
@@ -33,7 +33,7 @@ class DataProvider extends ChangeNotifier {
 
   );
 
-  addToHive(pdfModel pdfModel) async {
+  addToHive(pdfModels pdfModel) async {
     Box  box = DataProvider.openHiveBox();// adds to database
     box.add(pdfModel);
     notifyListeners();

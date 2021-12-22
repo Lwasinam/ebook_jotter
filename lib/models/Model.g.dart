@@ -6,28 +6,29 @@ part of 'Model.dart';
 // TypeAdapterGenerator
 // **************************************************************************
 
-class pdfModelAdapter extends TypeAdapter<pdfModel> {
+class pdfModelsAdapter extends TypeAdapter<pdfModels> {
   @override
-  final int typeId = 0;
+  final int typeId = 20;
 
   @override
-  pdfModel read(BinaryReader reader) {
+  pdfModels read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return pdfModel(
+    return pdfModels(
       filepath: fields[0] as String?,
       imagePath: fields[1] as String?,
       pageNumber: fields[2] as int?,
       notePath: fields[3] as String?,
+      bookName: fields[4] as String?,
     );
   }
 
   @override
-  void write(BinaryWriter writer, pdfModel obj) {
+  void write(BinaryWriter writer, pdfModels obj) {
     writer
-      ..writeByte(4)
+      ..writeByte(5)
       ..writeByte(0)
       ..write(obj.filepath)
       ..writeByte(1)
@@ -35,7 +36,9 @@ class pdfModelAdapter extends TypeAdapter<pdfModel> {
       ..writeByte(2)
       ..write(obj.pageNumber)
       ..writeByte(3)
-      ..write(obj.notePath);
+      ..write(obj.notePath)
+      ..writeByte(4)
+      ..write(obj.bookName);
   }
 
   @override
@@ -44,7 +47,7 @@ class pdfModelAdapter extends TypeAdapter<pdfModel> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is pdfModelAdapter &&
+      other is pdfModelsAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }

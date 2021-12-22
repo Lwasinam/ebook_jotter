@@ -15,10 +15,10 @@ import 'package:flutter/services.dart';
 //late Box box;
 Future<void> main() async {
 WidgetsFlutterBinding.ensureInitialized();
-Hive.registerAdapter<pdfModel>(pdfModelAdapter());
+Hive.registerAdapter<pdfModels>(pdfModelsAdapter());
 await Hive.initFlutter();
-await Hive.openBox<pdfModel>('BooksData');
-//Hive.box<pdfModel>("BooksData").deleteFromDisk();
+await Hive.openBox<pdfModels>('BooksDatabase');
+//Hive.box<pdfModels>("BooksData").deleteFromDisk();
 
  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
 statusBarColor: Colors.black,
@@ -62,7 +62,7 @@ class MyApp extends StatelessWidget {
           FloatingNavBarItem(
             iconData: Icons.home,
             title: 'Home',
-            page:  Hive.box<pdfModel>("BooksData").isEmpty ? WelcomeScreen() : HomePage()
+            page:  Hive.box<pdfModels>("BooksDatabase").isEmpty ? WelcomeScreen() : HomePage()
           ),
           FloatingNavBarItem(
             iconData: Icons.library_books_rounded,
