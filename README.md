@@ -4,7 +4,7 @@ A new Flutter project.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+This is a simple pdf reader that allows you to take notes while reading. Personal project to allow me make important jottings while reading books on my phone
 
 A few resources to get you started if this is your first Flutter project:
 
