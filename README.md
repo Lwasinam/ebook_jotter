@@ -1,4 +1,4 @@
-# ebook_jotter
+# Ebook_jotter
 
 A new Flutter project.
 
