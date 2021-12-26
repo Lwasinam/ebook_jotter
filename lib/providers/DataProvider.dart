@@ -6,10 +6,10 @@ import 'package:ebook_jotter/models/Model.dart';
 import 'package:native_pdf_renderer/native_pdf_renderer.dart';
 
 class DataProvider extends ChangeNotifier {
-  final TextEditingController? textController = new TextEditingController();
+ 
 
   static Box<pdfModels>  openHiveBox() => Hive.box("BooksDatabase");
-  
+
   pdfModels _pdfodel = pdfModels(bookName: '', filepath: '', notePath: '', pageNumber: 0, imageFile: Uint8List.fromList([00]));
   
   pdfModels get pdfmodel => _pdfodel;

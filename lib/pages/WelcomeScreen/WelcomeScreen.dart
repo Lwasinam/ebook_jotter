@@ -13,6 +13,8 @@ class WelcomeScreen extends StatefulWidget {
   @override
   _WelcomeScreenState createState() => _WelcomeScreenState();
 }
+   final TextEditingController? textController = new TextEditingController();
+
 
 
 
@@ -63,6 +65,8 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
    
 
      FilePickerResult? result = await FilePicker.platform.pickFiles();
+      final directory = await getApplicationDocumentsDirectory();
+ 
 
       if (result != null) {
         //get pdf path
@@ -77,7 +81,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
          // convert image file in bytes to string
         Uint8List? coverImageString = coverImage?.bytes;
 
-        BookNameDialog(file,coverImageString, context );
+        BookNameDialog(file,coverImageString, directory, context );
        
 
           
@@ -89,7 +93,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
 
 
   //dialog to write book name
-  Future BookNameDialog(file, coverImageString, context) => showDialog(
+  Future BookNameDialog(file, coverImageString, directory, context) => showDialog(
     context: context,
     builder: (context) => AlertDialog(
       title: Text("Write book name"),
@@ -105,9 +109,8 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
       
         TextButton(onPressed: ()  {
           Navigator.of(context).pop();
-          final model = Provider.of<pdfModels>(context).DataProvider().
-       
-              addToHive(pdfModels(filepath:file ,imageFile: coverImageString ,pageNumber: 1, notePath: '', bookName:textController?.text ));
+          pdfModels model = Provider.of<DataProvider>(context).pdfmodel;
+          model =  pdfModels(filepath:file ,imageFile: coverImageString ,pageNumber: 1, notePath: directory.path, bookName:textController?.text );
         }, child: Text("Ok"))
       ],
     )

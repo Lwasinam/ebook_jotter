@@ -15,6 +15,7 @@ import 'package:flutter/services.dart';
 //late Box box;
 Future<void> main() async {
 WidgetsFlutterBinding.ensureInitialized();
+
 Hive.registerAdapter<pdfModels>(pdfModelsAdapter());
 await Hive.initFlutter();
 await Hive.openBox<pdfModels>('BooksDatabase');
