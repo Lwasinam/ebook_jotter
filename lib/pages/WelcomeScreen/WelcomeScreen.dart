@@ -109,8 +109,8 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
       
         TextButton(onPressed: ()  {
           Navigator.of(context).pop();
-          pdfModels model = Provider.of<DataProvider>(context).pdfmodel;
-          model =  pdfModels(filepath:file ,imageFile: coverImageString ,pageNumber: 1, notePath: directory.path, bookName:textController?.text );
+          var model = Provider.of<DataProvider>(context, listen: false);
+          model.pdfmodel =  pdfModels(filepath:file ,imageFile: coverImageString ,pageNumber: 1, notePath: directory.path, bookName:textController?.text, noteFile: [] );
         }, child: Text("Ok"))
       ],
     )

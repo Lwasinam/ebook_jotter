@@ -58,7 +58,7 @@ class BookInfo extends StatelessWidget {
                           width: ScreenUtil(). setWidth(140),
                           decoration: BoxDecoration(
                               color: Colors.blue,
-                            //  image: DecorationImage(image: MemoryImage(pdfmodel.imagePath.)) ,
+                             image: DecorationImage(image: MemoryImage(pdfmodel.imageFile!)) ,
                             borderRadius: BorderRadius.circular(30)
                           ),
                                                ),

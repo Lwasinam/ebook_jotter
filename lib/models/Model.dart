@@ -4,7 +4,7 @@ import 'package:hive/hive.dart';
 import 'dart:typed_data';
 part 'Model.g.dart';
 
-@HiveType(typeId: 30)
+@HiveType(typeId: 31)
 class pdfModels{
   @HiveField(0)
   final String? filepath;
@@ -16,7 +16,9 @@ class pdfModels{
   final String? notePath;
   @HiveField(4)
   final String? bookName;
+  @HiveField(5)
+  final List? noteFile;
 
-  pdfModels({this.filepath, this.imageFile, this.pageNumber, this.notePath,this.bookName});
+  pdfModels({this.filepath, this.imageFile, this.pageNumber, this.notePath,this.bookName, this.noteFile});
 
 }

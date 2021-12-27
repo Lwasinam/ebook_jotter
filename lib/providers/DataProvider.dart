@@ -8,16 +8,16 @@ import 'package:native_pdf_renderer/native_pdf_renderer.dart';
 class DataProvider extends ChangeNotifier {
  
 
-  static Box<pdfModels>  openHiveBox() => Hive.box("BooksDatabase");
+  static Box<pdfModels>  openHiveBox() => Hive.box("BookDatabase");
 
-  pdfModels _pdfodel = pdfModels(bookName: '', filepath: '', notePath: '', pageNumber: 0, imageFile: Uint8List.fromList([00]));
+  pdfModels _pdfodel = pdfModels(bookName: '', filepath: '', notePath: '', pageNumber: 0, imageFile: Uint8List.fromList([00]), noteFile: []);
   
   pdfModels get pdfmodel => _pdfodel;
 
   set pdfmodel (pdfModels newModel){
     _pdfodel = newModel;
     _addToHive(_pdfodel);
-
+    notifyListeners();
 
   }
 

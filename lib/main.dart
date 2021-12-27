@@ -18,7 +18,7 @@ WidgetsFlutterBinding.ensureInitialized();
 
 Hive.registerAdapter<pdfModels>(pdfModelsAdapter());
 await Hive.initFlutter();
-await Hive.openBox<pdfModels>('BooksDatabase');
+await Hive.openBox<pdfModels>('BookDatabase');
 //Hive.box<pdfModels>("BooksData").deleteFromDisk();
 
  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
@@ -63,7 +63,7 @@ class MyApp extends StatelessWidget {
           FloatingNavBarItem(
             iconData: Icons.home,
             title: 'Home',
-            page:  Hive.box<pdfModels>("BooksDatabase").isEmpty ? WelcomeScreen() : HomePage()
+            page:  Hive.box<pdfModels>("BookDatabase").isEmpty ? WelcomeScreen() : HomePage()
           ),
           FloatingNavBarItem(
             iconData: Icons.library_books_rounded,
