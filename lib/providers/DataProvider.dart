@@ -10,7 +10,7 @@ class DataProvider extends ChangeNotifier {
 
   static Box<pdfModels>  openHiveBox() => Hive.box("BookDatabase");
 
-  pdfModels _pdfodel = pdfModels(bookName: '', filepath: '', notePath: '', pageNumber: 0, imageFile: Uint8List.fromList([00]), noteFile: []);
+  pdfModels _pdfodel = pdfModels(bookName: '', pdfFileList: null, notePath: '', pageNumber: 0, imageFile: Uint8List.fromList([00]), noteFile: []);
   
   pdfModels get pdfmodel => _pdfodel;
 
@@ -26,7 +26,7 @@ class DataProvider extends ChangeNotifier {
    _addToHive(pdfModels pdfmodel) async {
     Box  box = DataProvider.openHiveBox();// adds to database
     box.add(pdfmodel);
-    notifyListeners();
+   // notifyListeners();
    box.isEmpty ? print ("true") : print ("false");
   }
 

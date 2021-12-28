@@ -19,7 +19,7 @@ WidgetsFlutterBinding.ensureInitialized();
 Hive.registerAdapter<pdfModels>(pdfModelsAdapter());
 await Hive.initFlutter();
 await Hive.openBox<pdfModels>('BookDatabase');
-//Hive.box<pdfModels>("BooksData").deleteFromDisk();
+//Hive.box<pdfModels>("BookDatabase").deleteFromDisk();
 
  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
 statusBarColor: Colors.black,

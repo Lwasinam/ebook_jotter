@@ -4,10 +4,10 @@ import 'package:hive/hive.dart';
 import 'dart:typed_data';
 part 'Model.g.dart';
 
-@HiveType(typeId: 31)
+@HiveType(typeId: 34)
 class pdfModels{
-  @HiveField(0)
-  final String? filepath;
+ // @HiveField(0)
+ // final String? filepath;
   @HiveField(1)
   final Uint8List? imageFile;
   @HiveField(2)
@@ -18,7 +18,11 @@ class pdfModels{
   final String? bookName;
   @HiveField(5)
   final List? noteFile;
+ // @HiveField(6)
+//  PlatformFile? pdfFile;
+  @HiveField(7)
+ final List? pdfFileList;
 
-  pdfModels({this.filepath, this.imageFile, this.pageNumber, this.notePath,this.bookName, this.noteFile});
+  pdfModels({this.pdfFileList, this.imageFile, this.pageNumber, this.notePath,this.bookName, this.noteFile});
 
 }

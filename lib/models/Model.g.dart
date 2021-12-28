@@ -8,7 +8,7 @@ part of 'Model.dart';
 
 class pdfModelsAdapter extends TypeAdapter<pdfModels> {
   @override
-  final int typeId = 31;
+  final int typeId = 34;
 
   @override
   pdfModels read(BinaryReader reader) {
@@ -17,7 +17,7 @@ class pdfModelsAdapter extends TypeAdapter<pdfModels> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return pdfModels(
-      filepath: fields[0] as String?,
+      pdfFileList: (fields[7] as List?)?.cast<dynamic>(),
       imageFile: fields[1] as Uint8List?,
       pageNumber: fields[2] as int?,
       notePath: fields[3] as String?,
@@ -30,8 +30,6 @@ class pdfModelsAdapter extends TypeAdapter<pdfModels> {
   void write(BinaryWriter writer, pdfModels obj) {
     writer
       ..writeByte(6)
-      ..writeByte(0)
-      ..write(obj.filepath)
       ..writeByte(1)
       ..write(obj.imageFile)
       ..writeByte(2)
@@ -41,7 +39,9 @@ class pdfModelsAdapter extends TypeAdapter<pdfModels> {
       ..writeByte(4)
       ..write(obj.bookName)
       ..writeByte(5)
-      ..write(obj.noteFile);
+      ..write(obj.noteFile)
+      ..writeByte(7)
+      ..write(obj.pdfFileList);
   }
 
   @override

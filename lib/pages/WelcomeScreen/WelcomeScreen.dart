@@ -69,19 +69,23 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
  
 
       if (result != null) {
-        //get pdf path
-          String? file = result.files.single.path;
+        //get pdf file
+       PlatformFile pdfFile = result.files.first;
+       // saving  all file info as list for accesibility
+          List pdfFileList = [pdfFile.name, pdfFile.bytes, pdfFile.size,pdfFile.extension, pdfFile.path];
+         //getting pdf filePath
+         String? filePath = pdfFile.path;
 
           // convert first page to image
-          final document = await PdfDocument.openFile(file!);
+          final document = await PdfDocument.openFile(filePath!);
           final page = await document.getPage(1);
           final coverImage = await page.render(width: page.width, height: page.height);
           await page.close();
          
-         // convert image file in bytes to string
+         // convert image file to bytes
         Uint8List? coverImageString = coverImage?.bytes;
 
-        BookNameDialog(file,coverImageString, directory, context );
+        BookNameDialog(pdfFileList,coverImageString, directory, context );
        
 
           
@@ -93,7 +97,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
 
 
   //dialog to write book name
-  Future BookNameDialog(file, coverImageString, directory, context) => showDialog(
+  Future BookNameDialog(pdfFileList, coverImageString, directory, context) => showDialog(
     context: context,
     builder: (context) => AlertDialog(
       title: Text("Write book name"),
@@ -110,7 +114,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
         TextButton(onPressed: ()  {
           Navigator.of(context).pop();
           var model = Provider.of<DataProvider>(context, listen: false);
-          model.pdfmodel =  pdfModels(filepath:file ,imageFile: coverImageString ,pageNumber: 1, notePath: directory.path, bookName:textController?.text, noteFile: [] );
+          model.pdfmodel =  pdfModels(pdfFileList:pdfFileList ,imageFile: coverImageString ,pageNumber: 1, notePath: directory.path, bookName:textController?.text, noteFile: [] );
         }, child: Text("Ok"))
       ],
     )
