@@ -63,7 +63,9 @@ class MyApp extends StatelessWidget {
           FloatingNavBarItem(
             iconData: Icons.home,
             title: 'Home',
-            page:  Hive.box<pdfModels>("BookDatabase").isEmpty ? WelcomeScreen() : HomePage()
+            page:   Hive.box<pdfModels>("BookDatabase").isEmpty ? WelcomeScreen() : HomePage()
+            // WelcomeScreen()
+            // Hive.box<pdfModels>("BookDatabase").isEmpty ? WelcomeScreen() : HomePage()
           ),
           FloatingNavBarItem(
             iconData: Icons.library_books_rounded,
